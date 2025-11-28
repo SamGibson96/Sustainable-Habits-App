@@ -1,0 +1,81 @@
+.App {
+  font-family: sans-serif;
+  text-align: center;
+}
+.bg-brown {
+  background-color: #8b4513;
+}
+.bg-grass {
+  background-color: #7cc47f;
+}
+.btn-grass {
+  background-color: #7cc47f;
+}
+.scroll-area::-webkit-scrollbar {
+  width: 10px;
+}
+
+.scroll-area::-webkit-scrollbar-track {
+  background: #0dcaf0;
+}
+
+.scroll-area::-webkit-scrollbar-thumb {
+  background: #0aa2c0;
+  border-radius: 10px;
+}
+
+.scroll-area::-webkit-scrollbar-thumb:hover {
+  background: #087990;
+}
+
+/* Firefox support */
+.scroll-area {
+  scrollbar-width: thin;
+  scrollbar-color: #0aa2c0 #0dcaf0;
+}
+@keyframes seed-wiggle {
+  10% {
+    transform: translateX(-50%) rotateZ(0deg);
+  }
+  20% {
+    transform: translateX(-50%) rotateZ(-10deg);
+  }
+  40% {
+    transform: translateX(-50%) rotateZ(10deg);
+  }
+  60% {
+    transform: translateX(-50%) rotateZ(-10deg);
+  }
+  80% {
+    transform: translateX(-50%) rotateZ(10deg);
+  }
+  100% {
+    transform: translateX(-50%) rotateZ(0deg);
+  }
+}
+@keyframes sprout-wiggle {
+  10% {
+    transform: translateX(-50%) rotateZ(0deg);
+    transform-origin: center bottom;
+  }
+  20% {
+    transform: translateX(-50%) rotateZ(-10deg);
+    transform-origin: enter bottom;
+  }
+  40% {
+    transform: translateX(-50%) rotateZ(10deg);
+    transform-origin: enter bottom;
+  }
+  60% {
+    transform: translateX(-50%) rotateZ(-10deg);
+    transform-origin: enter bottom;
+  }
+  80% {
+    transform: translateX(-50%) rotateZ(10deg);
+    transform-origin: enter bottom;
+  }
+  100% {
+    transform: translateX(-50%) rotateZ(0deg);
+    transform-origin: enter bottom;
+  }
+}
