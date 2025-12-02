@@ -5,16 +5,18 @@
   "keywords": [],
   "main": "src/index.tsx",
   "dependencies": {
+    "bootstrap": "5.3.8",
+    "firebase": "12.6.0",
     "react": "^19.0.0",
     "react-dom": "^19.0.0",
-    "react-scripts": "^5.0.0",
-    "firebase": "12.6.0",
     "react-router-dom": "7.9.6",
-    "bootstrap": "5.3.8"
+    "react-scripts": "^5.0.0"
   },
   "devDependencies": {
     "@types/react": "19.0.0",
     "@types/react-dom": "19.0.0",
+    "ajv": "^6.12.6",
+    "ajv-keywords": "^3.5.2",
     "loader-utils": "3.2.1",
     "typescript": "5.7.2"
   },

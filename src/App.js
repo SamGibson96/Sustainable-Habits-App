@@ -28,8 +28,7 @@ function App() {
 
   return (
     <HashRouter>
-      <div style={{ padding: "2rem", fontFamily: "sans-serif" }}>
-        <h1>Flower Power App</h1>
+      <div >
 
         {currentUser ? <Dashboard user={currentUser} /> : <AuthPanel />}
       </div>

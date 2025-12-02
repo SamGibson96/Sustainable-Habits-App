@@ -38,18 +38,17 @@ function Dashboard({ user }) {
 
   return (
     <div className="bg-info min-vh-100">
-      <div className="p-3 d-flex justify-content-between align-items-center">
+      <div className="p-3 bg-info d-flex justify-content-between align-items-center">
         <div>
-          <h2 className="mb-1">Dashboard</h2>
-          <p className="mb-0">Logged in as {user.email}</p>
-          <p className="mb-0">Daily score: {dailyScore}</p>
+          <h2 className="mb-1">Logged in as {user.email}</h2>
+          <h2 className="mb-1">Daily score: {dailyScore}</h2>
         </div>
-        <button className="btn btn-outline-dark" onClick={handleLogout}>
+        <button className="btn btn-success" onClick={handleLogout}>
           Log Out
         </button>
       </div>
 
-      <nav className="p-3 bg-info d-flex gap-2 border-top border-bottom">
+      <nav className="p-3 bg-info d-flex gap-2" >
         <Link to="/" className="btn btn-success">
           Habits
         </Link>
@@ -58,7 +57,7 @@ function Dashboard({ user }) {
         </Link>
       </nav>
 
-      <div className="p-3">
+      <div >
         <Routes>
           <Route
             path="/"
