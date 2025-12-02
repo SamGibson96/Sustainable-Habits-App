@@ -28,7 +28,6 @@
   background: #087990;
 }
 
-/* Firefox support */
 .scroll-area {
   scrollbar-width: thin;
   scrollbar-color: #0aa2c0 #0dcaf0;
@@ -78,4 +77,5 @@
     transform: translateX(-50%) rotateZ(0deg);
     transform-origin: enter bottom;
   }
+
 }

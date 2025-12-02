@@ -3,14 +3,15 @@ import React from "react";
 function Habits(props) {
   return (
     <>
-      <div className="bg-info" style={{ height: "40px" }}>
+    <div style = {{height: "75vh", width: "100%"}}>
+      <div className="bg-info mb-2" style={{ height: "40px"}}>
         <h1 className="lead fs-1 fw-bold text-center">
-          Your score for today is {props.dailyScorePD}
+         Your Habits:
         </h1>
       </div>
       <div
-        className="bg-info scroll-area"
-        style={{ height: "450px", overflowY: "auto" }}
+        className="bg-info scroll-area p-2 mb-2"
+        style={{ height: "350px", overflowY: "auto" }}
       >
         {props.susHabitPD.map((a) => (
           <p className="lead fw-bold fs-4 text-center" key={a.ID}>
@@ -39,6 +40,7 @@ function Habits(props) {
       <div className="bg-info" style={{ height: "20px" }}></div>
       <div className="bg-grass" style={{ height: "20px" }}></div>
       <div className="bg-brown" style={{ height: "300px" }}></div>
+      </div>
     </>
   );
 }

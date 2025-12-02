@@ -12,13 +12,13 @@ function Flower() {
       <div
         style={{
           position: "relative",
-          height: "100vh",
+          height: "75vh",
           width: "100%",
         }}
       >
         <div className="bg-info" style={{ height: "40%" }}></div>
         <div className="bg-grass" style={{ height: "20%" }}></div>
-        <div className="bg-brown" style={{ height: "40%" }}></div>
+        <div className="bg-brown" style={{ height: "50%" }}></div>
         <div
           style={{
             position: "absolute",
