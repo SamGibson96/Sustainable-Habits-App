@@ -1,7 +1,7 @@
 // src/App.js
 
-import React, { useEffect, useState } from "react";
-import { HashRouter } from "react-router-dom";
+import { react, useEffect, useState } from "react";
+import { HashRouter, Routes, Route } from "react-router-dom";
 
 import { auth } from "./firebase";
 import { onAuthStateChanged } from "firebase/auth";
@@ -28,9 +28,14 @@ function App() {
 
   return (
     <HashRouter>
-      <div >
-
-        {currentUser ? <Dashboard user={currentUser} /> : <AuthPanel />}
+      <div>
+        {currentUser ? (
+          <Routes>
+            <Route path="/*" element={<Dashboard user={currentUser} />} />
+          </Routes>
+        ) : (
+          <AuthPanel />
+        )}
       </div>
     </HashRouter>
   );

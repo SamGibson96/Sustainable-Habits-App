@@ -1,8 +1,8 @@
 export const susHabit = [
-  { ID: 1, Habit: "Walk to Work", Score: 4 },
+  { ID: 1, Habit: "Walk to Work", Score: 4, WeatherType: "Rain"},
   { ID: 2, Habit: "Plant Based Meal", Score: 7 },
   { ID: 3, Habit: "Vegetarian", Score: 9 },
-  { ID: 4, Habit: "Cycle to work", Score: 8 },
+  { ID: 4, Habit: "Cycle to work", Score: 8, WeatherType: "Rain"},
   { ID: 5, Habit: "Recycling", Score: 4 },
   { ID: 6, Habit: "Compost Bin", Score: 4 },
   { ID: 7, Habit: "Turn off tap when burshing teeth", Score: 2 },
