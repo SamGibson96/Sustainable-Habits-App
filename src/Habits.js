@@ -1,17 +1,24 @@
 import React from "react";
+import Appbackground from "./Images/AppBackground.png";
 
 function Habits(props) {
   return (
     <>
-    <div style = {{height: "75vh", width: "100%"}}>
-      <div className="bg-info mb-2" style={{ height: "40px"}}>
+   <div className = "flower-bg min-vh-75"
+        style={{ backgroundImage: `url(${Appbackground})`,
+          position: "relative",
+          height: "75vh",
+          width: "100%",
+        }}
+      >
+      <div className="" style={{ height: "40px"}}>
         <h1 className="lead fs-1 fw-bold text-center">
          Your Habits:
         </h1>
       </div>
       <div
-        className="bg-info scroll-area p-2 mb-2"
-        style={{ height: "350px", overflowY: "auto" }}
+        className="scroll-area p-2 mb-2 min-vh-75"
+        style={{ height: "450px", overflowY: "auto" }}
       >
         {props.susHabitPD.map((a) => (
           <p className="lead fw-bold fs-4 text-center" key={a.ID}>
@@ -28,7 +35,7 @@ function Habits(props) {
         ))}
       </div>
 
-      <div className="bg-info d-flex justify-content-center">
+      <div className="d-flex justify-content-center">
         <button
           className="p-1 btn btn-outline-success active btn-lg"
           onClick={() => props.changeTaskCheckPD({})}
@@ -37,9 +44,6 @@ function Habits(props) {
         </button>
       </div>
 
-      <div className="bg-info" style={{ height: "20px" }}></div>
-      <div className="bg-grass" style={{ height: "20px" }}></div>
-      <div className="bg-brown" style={{ height: "300px" }}></div>
       </div>
     </>
   );
