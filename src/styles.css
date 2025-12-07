@@ -2,15 +2,28 @@
   font-family: sans-serif;
   text-align: center;
 }
-.bg-brown {
-  background-color: #8b4513;
+.center-container {
+  display: flex;
+  justify-content: center; 
 }
-.bg-grass {
-  background-color: #7cc47f;
+.bg-sky {
+  background-color: #75C6E2;
 }
-.btn-grass {
-  background-color: #7cc47f;
+.bg-lowsky {
+  background-color: #97DCe8;
 }
+.flower-bg {
+  min-height: 100vh;      /* fill the whole visible screen */
+  width: 100%;
+  background-size: cover; /* fill screen without stretching */
+  background-position: center bottom; /* keeps grass at bottom, sky above */
+  background-repeat: no-repeat;
+  margin: 0;
+  padding: 0;
+  position: relative;     /* so you can absolutely-position dirt/seed */
+  overflow: hidden;       /* stops scrollbars if something leaks out */
+}
+
 .scroll-area::-webkit-scrollbar {
   width: 10px;
 }

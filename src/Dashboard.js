@@ -69,8 +69,8 @@ function Dashboard({ user }) {
   }, [county]);
 
   return (
-    <div className="bg-info min-vh-100">
-      <div className="p-3 bg-info d-flex justify-content-between align-items-center">
+    <div className="bg-sky min-vh-100">
+      <div className="p-3 bg-sky d-flex justify-content-between align-items-center">
         <div>
           <h2 className="mb-1">Logged in as {user.email}</h2>
           <h2 className="mb-1">Daily score: {dailyScore}</h2>
@@ -90,7 +90,7 @@ function Dashboard({ user }) {
         </button>
       </div>
 
-      <nav className="p-3 bg-info d-flex gap-2" >
+      <nav className="p-3 bg-sky d-flex gap-2" >
         <Link to="/" className="btn btn-success">
           Habits
         </Link>
