@@ -6,8 +6,23 @@ import Appbackground from "./Images/AppBackground.png";
 import Dirt from "./Images/Dirt.png";
 import Seed from "./Images/Seed.png";
 import Sprout from "./Images/Sprout.png";
+import StemStage2 from "./Images/StemStage2.png";
+import Bud from "./Images/Bud.png";
+import Leaf1 from "./Images/Leaf1.png";
+import Leaf2 from "./Images/leaf2.png";
+import Leaf3 from "./Images/leaf3.png";
+import FlowerMiddle from "./Images/FlowerMiddle.png";
+import Petals from "./Images/Petals.png";
 
-function Flower() {
+
+
+function Flower(props) {
+
+  const stage1 = props.dailyScorePD < 10;
+  const stage2 = props.dailyScorePD >= 10 && props.dailyScorePD < 20;
+  const StemAppearance = props.dailyScorePD >=20;
+  const stage3 = props.dailyScorePD >= 20 && props.dailyScorePD < 30;
+  const stage4 = props.dailyScorePD >= 30 && props.dailyScorePD < 40;
   return (
     <>
       <div className = "flower-bg"
@@ -41,7 +56,7 @@ function Flower() {
             alt="Dirt"
           />
 
-          {/* {
+          {stage1 &&
             <img
               src={Seed}
               style={{
@@ -59,8 +74,8 @@ function Flower() {
               }}
               alt="Seed"
             />
-          } */}
-          {
+          }
+          { stage2 &&
             <img
               src={Sprout}
               style={{
@@ -79,6 +94,127 @@ function Flower() {
               alt="Sprout"
             />
           }
+          <div className="stem-group">
+          {StemAppearance &&
+            <img
+              src={StemStage2}
+              style={{
+                position: "absolute",
+                height: "500px",
+                width: "auto",
+                bottom: "110px",
+                left: "45%",
+                transform: "translateX(-50%)",
+                zIndex: 5,
+              }}
+              alt="StemStage2"
+            />
+          }
+            { stage3 &&
+            <img
+              src={Bud}
+              style={{
+                position: "absolute",
+                height: "400px",
+                width: "auto",
+                bottom: "105px",
+                left: "48%",
+                transform: "translateX(-50%)",
+                zIndex: 5,
+              }}
+              alt="Bud"
+            />
+          } 
+          { StemAppearance &&
+            <img
+              src={Leaf1}
+              style={{
+                position: "absolute",
+                height: "400px",
+                width: "auto",
+                bottom: "110px",
+                left: "50%",
+                transform: "translateX(-50%)",
+                zIndex: 2,
+                animation: "sway-left",
+                animationDuration: "6s",
+                animationTimingFunction: "ease-in-out",
+                animationIterationCount: "infinite",
+              }}
+              alt="Leaf1"
+            />
+          }
+          { StemAppearance &&
+            <img
+              src={Leaf2}
+              style={{
+                position: "absolute",
+                height: "400px",
+                width: "auto",
+                bottom: "110px",
+                left: "44%",
+                transform: "translateX(-50%)",
+                zIndex: 2,
+                animation: "sway-right",
+                animationDuration: "6s",
+                animationTimingFunction: "ease-in-out",
+                animationIterationCount: "infinite",
+              }}
+              alt="Leaf2"
+            />
+          }
+          { StemAppearance &&
+            <img
+              src={Leaf3}
+              style={{
+                position: "absolute",
+                height: "400px",
+                width: "auto",
+                bottom: "110px",
+                left: "43%",
+                transform: "translateX(-50%)",
+                zIndex: 2,
+                animation: "sway-right",
+                animationDuration: "6s",
+                animationTimingFunction: "ease-in-out",
+                animationIterationCount: "infinite",
+              }}
+              alt="Leaf3"
+            />
+          }
+          
+           { stage4 &&
+            <img
+              src={FlowerMiddle}
+              style={{
+                position: "absolute",
+                height: "250px",
+                width: "auto",
+                bottom: "340px",
+                left: "50%",
+                transform: "translateX(-50%)",
+                zIndex: 5,
+              }}
+              alt="FlowerMiddle"
+            />
+          }
+           { stage4 &&
+            <img
+              src={Petals}
+              style={{
+                position: "absolute",
+                height: "250px",
+                width: "auto",
+                bottom: "340px",
+                left: "50%",
+                transform: "translateX(-50%)",
+                zIndex: 5,
+              }}
+              alt="Petals"
+            />
+          }
+
+          </div>
         </div>
       </div>
     </>

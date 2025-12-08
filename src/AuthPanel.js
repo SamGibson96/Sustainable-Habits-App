@@ -73,10 +73,6 @@ function AuthPanel() {
   return (
     <div className="flower-bg d-flex justify-content-center align-items-center" style = {{backgroundImage: `url(${Appbackground})`}}> 
     <div className="border border-4 border-black bg-success p-4 rounded shadow" style={{ width: "350px" }}>
-      <div style={{ marginBottom: "1rem" }}>
-        <strong>Current user:</strong>{" "}
-        {currentUser ? currentUser.email : "None"}
-      </div>
 
       {!isLoggedIn && (
         <>

@@ -69,12 +69,12 @@ function Dashboard({ user }) {
   }, [county]);
 
   return (
-    <div className="bg-sky min-vh-100">
+    <div className="bg-sky">
       <div className="p-3 bg-sky d-flex justify-content-between align-items-center">
         <div>
           <h2 className="mb-1">Logged in as {user.email}</h2>
           <h2 className="mb-1">Daily score: {dailyScore}</h2>
-          <h2 className="mb-1">Rainfall level: {rainfall}</h2>
+          {/* <h2 className="mb-1">Rainfall level: {rainfall}</h2> */}
         </div>
        <select className = "btn btn-success" value={county} onChange={(e) => setCounty(e.target.value)}>
         <option value="">Select County</option>
@@ -90,7 +90,7 @@ function Dashboard({ user }) {
         </button>
       </div>
 
-      <nav className="p-3 bg-sky d-flex gap-2" >
+      <nav className="ps-3 bg-sky d-flex gap-2" >
         <Link to="/" className="btn btn-success">
           Habits
         </Link>
@@ -113,7 +113,7 @@ function Dashboard({ user }) {
               />
             }
           />
-          <Route path="/flower" element={<Flower />} />
+          <Route path="/flower" element={<Flower dailyScorePD ={dailyScore} />} />
         </Routes>
       </div>
     </div>
