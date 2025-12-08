@@ -90,5 +90,35 @@
     transform: translateX(-50%) rotateZ(0deg);
     transform-origin: enter bottom;
   }
+}
+ @keyframes sway-left {
+  0%   { transform: translateX(-45%) rotate(0deg); }
+  25%  { transform: translateX(-45%) rotate(3deg); }
+  50% { transform: translateX(-45%) rotate(0deg); }
+  75% { transform: translateX(-45%) rotate(-3deg); }
+  100% { transform: translateX(-45%) rotate(0deg); }
+}
 
+@keyframes sway-right {
+  0%   { transform: translateX(-51%) rotate(0deg); }
+  25%  { transform: translateX(-51%) rotate(2deg); }
+  50% { transform: translateX(-51%) rotate(0deg); }
+  75% { transform: translateX(-51%) rotate(-2deg); }
+  100% { transform: translateX(-51%) rotate(0deg); }
+}
+@keyframes stage3 {
+  0%   { transform: translateX(-50%) rotate(0deg); }
+  25%  { transform: translateX(-50%) rotate(1deg); }
+  50% { transform: translateX(-50%) rotate(0deg); }
+  75% { transform: translateX(-50%) rotate(-1deg); }
+  100% { transform: translateX(-50%) rotate(0deg); }
+}
+
+.stem-group {
+  position: absolute;
+  left: 46%;
+  bottom: 0px;
+  transform: translateX(-50%);
+  transform-origin: center bottom;  
+  animation: stage3 10s ease-in-out infinite;
 }
