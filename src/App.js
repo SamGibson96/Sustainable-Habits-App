@@ -1,6 +1,6 @@
 // src/App.js
 
-import { react, useEffect, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 
 

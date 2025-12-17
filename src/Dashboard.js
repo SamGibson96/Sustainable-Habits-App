@@ -18,6 +18,7 @@ function Dashboard({ user }) {
   const [weather, setWeather] = useState(null);
   const [loading, setLoading] = useState(false);
   const [rainfall, setRainfall] = useState(0);
+  const [windSpeed, setWindSpeed] = useState(0);
 
   const toggleHabit = (ID) => {
     changeTaskCheck((prev) => ({
@@ -33,7 +34,9 @@ function Dashboard({ user }) {
     let score = habit.Score;
     if (habit.WeatherType === "Rain" && rainfall > 0) {
       score += 2;
-    }
+      if(windSpeed > 5) {
+        score += 3;
+    }}
     return total + score;
   }, 0);
 
@@ -59,6 +62,7 @@ function Dashboard({ user }) {
         const data = await response.json();
 
         setRainfall(data.rain?.["1h"] || 0);
+        setWindSpeed(data.wind?.speed || 0);
         setWeather(data);
       } catch (error) {
         console.error("Error fetching weather:", error);
