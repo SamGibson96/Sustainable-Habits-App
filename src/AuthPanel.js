@@ -1,7 +1,6 @@
-// src/AuthPanel.js
-
 import React, { useState, useEffect } from "react";
-import { auth } from "./firebase";
+import { auth, db } from "./firebase";
+import { doc, setDoc } from "firebase/firestore";
 import {
   createUserWithEmailAndPassword,
   signInWithEmailAndPassword,
@@ -14,13 +13,15 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./styles.css";
 import Appbackground from "./Images/AppBackground.png";
 
+  const getTodayKey = () =>
+    new Date().toLocaleDateString("en-CA");
+
 function AuthPanel() {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [status, setStatus] = useState("");
   const [currentUser, setCurrentUser] = useState(null);
 
-  // Listen to authentication state changes
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       if (user) {
@@ -38,8 +39,18 @@ function AuthPanel() {
   const handleSignup = async () => {
     try {
       setStatus("Signing up...");
-      await createUserWithEmailAndPassword(auth, email, password);
-      // onAuthStateChanged will update status and currentUser
+
+      const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+
+      const user = userCredential.user;
+
+      await setDoc(doc(db, "users", user.uid), {
+      dailyScore: 0,
+      totalScore: 0,
+      lastLoggedIn: getTodayKey(),
+      checkedHabits: {}
+    });
+      
     } catch (error) {
       console.error("Sign up error:", error);
       setStatus("Sign up error: " + error.message);
@@ -50,7 +61,7 @@ function AuthPanel() {
     try {
       setStatus("Logging in...");
       await signInWithEmailAndPassword(auth, email, password);
-      // onAuthStateChanged will update status and currentUser
+      
     } catch (error) {
       console.error("Login error:", error);
       setStatus("Login error: " + error.message);
@@ -61,7 +72,6 @@ function AuthPanel() {
     try {
       setStatus("Logging out...");
       await signOut(auth);
-      // onAuthStateChanged will update status and currentUser
     } catch (error) {
       console.error("Logout error:", error);
       setStatus("Logout error: " + error.message);

@@ -13,15 +13,15 @@
   background-color: #97DCe8;
 }
 .flower-bg {
-  min-height: 100vh;      /* fill the whole visible screen */
+  min-height: 100vh;     
   width: 100%;
-  background-size: cover; /* fill screen without stretching */
-  background-position: center bottom; /* keeps grass at bottom, sky above */
+  background-size: cover; 
+  background-position: center bottom; 
   background-repeat: no-repeat;
   margin: 0;
   padding: 0;
-  position: relative;     /* so you can absolutely-position dirt/seed */
-  overflow: hidden;       /* stops scrollbars if something leaks out */
+  position: relative;     
+  overflow: hidden;  
 }
 
 .scroll-area::-webkit-scrollbar {
@@ -71,19 +71,19 @@
     transform-origin: center bottom;
   }
   20% {
-    transform: translateX(-50%) rotateZ(-10deg);
+    transform: translateX(-50%) rotateZ(-2deg);
     transform-origin: enter bottom;
   }
   40% {
-    transform: translateX(-50%) rotateZ(10deg);
+    transform: translateX(-50%) rotateZ(2deg);
     transform-origin: enter bottom;
   }
   60% {
-    transform: translateX(-50%) rotateZ(-10deg);
+    transform: translateX(-50%) rotateZ(-2deg);
     transform-origin: enter bottom;
   }
   80% {
-    transform: translateX(-50%) rotateZ(10deg);
+    transform: translateX(-50%) rotateZ(2deg);
     transform-origin: enter bottom;
   }
   100% {

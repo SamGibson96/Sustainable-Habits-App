@@ -4,13 +4,16 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./styles.css";
 
-import { auth } from "./firebase";
+import { auth, db} from "./firebase";
+import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
 import { signOut } from "firebase/auth";
 
 import { susHabit } from "./susHabit.js";
 import Flower from "./Flower";
 import {counties} from "./counties.js";
 import Habits from "./Habits";
+
+const getTodayKey = () => new Date().toLocaleDateString("en-CA");
 
 function Dashboard({ user }) {
   const [checkedTasks, changeTaskCheck] = useState({});
@@ -20,12 +23,15 @@ function Dashboard({ user }) {
   const [rainfall, setRainfall] = useState(0);
   const [windSpeed, setWindSpeed] = useState(0);
 
+const [totalScore, setTotalScore] = useState(0);
+const [readyScores, setReadyScores] = useState(false);
+
   const toggleHabit = (ID) => {
-    changeTaskCheck((prev) => ({
-      ...prev,
-      [ID]: !prev[ID],
-    }));
-  };
+  changeTaskCheck((prev) => ({
+    ...prev,
+    [ID]: !prev[ID],
+  }));
+};
 
   const dailyScore = susHabit.reduce((total, habit) => {
     const isChecked = !!checkedTasks[habit.ID];
@@ -47,6 +53,67 @@ function Dashboard({ user }) {
       console.error("Logout error:", error);
     }
   };
+
+  useEffect(() => {
+  if (!user?.uid) return;
+
+  const initScores = async () => {
+    const today = getTodayKey();
+    const userRef = doc(db, "users", user.uid);
+
+    const snap = await getDoc(userRef);
+
+    if (!snap.exists()) {
+      await setDoc(userRef, { dailyScore: 0, totalScore: 0, lastLoggedIn: today, checkedHabits: {} });
+      setTotalScore(0);
+      setReadyScores(true);
+      changeTaskCheck({});
+      return;
+    }
+
+    const data = snap.data();
+    const last = data.lastLoggedIn;
+    const storedDaily = data.dailyScore ?? 0;
+    let storedTotal = data.totalScore ?? 0;
+    const storedChecked = data.checkedHabits ?? {};
+
+    if (last !== today) {
+      storedTotal = storedTotal + storedDaily;
+
+      await updateDoc(userRef, {
+        totalScore: storedTotal,
+        dailyScore: 0,
+        lastLoggedIn: today,
+        checkedHabits: {}
+      });
+
+
+      changeTaskCheck({});
+    }
+    else {
+      changeTaskCheck(storedChecked);
+    }
+
+    setTotalScore(storedTotal);
+    setReadyScores(true);
+  };
+
+  initScores().catch((e) => console.error("Init scores error:", e));
+}, [user?.uid]);
+
+useEffect(() => {
+  if (!readyScores) return;
+  if (!user?.uid) return;
+
+  const userRef = doc(db, "users", user.uid);
+
+  updateDoc(userRef, {
+    dailyScore,
+    checkedHabits: checkedTasks,
+  }).catch((e) =>
+    console.error("Firestore sync error:", e)
+  );
+}, [dailyScore, checkedTasks, readyScores, user?.uid]);
 
   useEffect(() => {
     if (!county) return;
@@ -78,7 +145,7 @@ function Dashboard({ user }) {
         <div>
           <h2 className="mb-1">Logged in as {user.email}</h2>
           <h2 className="mb-1">Daily score: {dailyScore}</h2>
-          {/* <h2 className="mb-1">Rainfall level: {rainfall}</h2> */}
+          <h2 className="mb-1">Total score: {totalScore}</h2>
         </div>
        <select className = "btn btn-success" value={county} onChange={(e) => setCounty(e.target.value)}>
         <option value="">Select County</option>

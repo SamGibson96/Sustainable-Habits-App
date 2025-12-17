@@ -22,7 +22,7 @@ function Flower(props) {
   const stage2 = props.dailyScorePD >= 10 && props.dailyScorePD < 20;
   const StemAppearance = props.dailyScorePD >=20;
   const stage3 = props.dailyScorePD >= 20 && props.dailyScorePD < 30;
-  const stage4 = props.dailyScorePD >= 30 && props.dailyScorePD < 40;
+  const stage4 = props.dailyScorePD >= 30;
   return (
     <>
       <div className = "flower-bg"
