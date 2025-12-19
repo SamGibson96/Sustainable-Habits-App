@@ -1,13 +1,16 @@
-import React, { useState, useEffect } from "react";
+// React imports
+import { useState, useEffect } from "react";
 import { Link, Routes, Route } from "react-router-dom";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./styles.css";
 
+// Firebase imports
 import { auth, db} from "./firebase";
 import { doc, getDoc, updateDoc, setDoc } from "firebase/firestore";
 import { signOut } from "firebase/auth";
 
+// Local imports
 import { susHabit } from "./susHabit.js";
 import Flower from "./Flower";
 import {counties} from "./counties.js";
@@ -18,20 +21,23 @@ const getTodayKey = () => new Date().toLocaleDateString("en-CA");
 function Dashboard({ user }) {
   const [checkedTasks, changeTaskCheck] = useState({});
   const [county, setCounty] = useState("");
-  const [weather, setWeather] = useState(null);
-  const [loading, setLoading] = useState(false);
   const [rainfall, setRainfall] = useState(0);
   const [windSpeed, setWindSpeed] = useState(0);
 
 const [totalScore, setTotalScore] = useState(0);
 const [readyScores, setReadyScores] = useState(false);
 
+// Function to toggle habit completion and store in state
   const toggleHabit = (ID) => {
   changeTaskCheck((prev) => ({
     ...prev,
     [ID]: !prev[ID],
   }));
 };
+
+// Calculate daily score based on checked habits and weather conditions the user 
+// will get more points for completing certain habits in specific weather conditions. Rain and wind
+// wind points are only added if it is raining
 
   const dailyScore = susHabit.reduce((total, habit) => {
     const isChecked = !!checkedTasks[habit.ID];
@@ -41,11 +47,12 @@ const [readyScores, setReadyScores] = useState(false);
     if (habit.WeatherType === "Rain" && rainfall > 0) {
       score += 2;
       if(windSpeed > 5) {
-        score += 3;
+        score += 1;
     }}
     return total + score;
   }, 0);
 
+  // Logout function  
   const handleLogout = async () => {
     try {
       await signOut(auth);
@@ -54,6 +61,7 @@ const [readyScores, setReadyScores] = useState(false);
     }
   };
 
+  // Initialize and sync scores with Firestore
   useEffect(() => {
   if (!user?.uid) return;
 
@@ -63,6 +71,7 @@ const [readyScores, setReadyScores] = useState(false);
 
     const snap = await getDoc(userRef);
 
+    // If no user data exists, create it
     if (!snap.exists()) {
       await setDoc(userRef, { dailyScore: 0, totalScore: 0, lastLoggedIn: today, checkedHabits: {} });
       setTotalScore(0);
@@ -71,12 +80,14 @@ const [readyScores, setReadyScores] = useState(false);
       return;
     }
 
+    // User data exists, retrieve and process it
     const data = snap.data();
     const last = data.lastLoggedIn;
     const storedDaily = data.dailyScore ?? 0;
     let storedTotal = data.totalScore ?? 0;
     const storedChecked = data.checkedHabits ?? {};
 
+    // If the last login date is not today, reset daily score and checked habits
     if (last !== today) {
       storedTotal = storedTotal + storedDaily;
 
@@ -107,6 +118,7 @@ useEffect(() => {
 
   const userRef = doc(db, "users", user.uid);
 
+  // Update Firestore with the latest daily score and checked habits
   updateDoc(userRef, {
     dailyScore,
     checkedHabits: checkedTasks,
@@ -115,6 +127,7 @@ useEffect(() => {
   );
 }, [dailyScore, checkedTasks, readyScores, user?.uid]);
 
+// Fetch weather data when county changes 
   useEffect(() => {
     if (!county) return;
 
@@ -130,7 +143,6 @@ useEffect(() => {
 
         setRainfall(data.rain?.["1h"] || 0);
         setWindSpeed(data.wind?.speed || 0);
-        setWeather(data);
       } catch (error) {
         console.error("Error fetching weather:", error);
       }
@@ -140,6 +152,7 @@ useEffect(() => {
   }, [county]);
 
   return (
+    // Dashboard layout
     <div className="bg-sky">
       <div className="p-3 bg-sky d-flex justify-content-between align-items-center">
         <div>
@@ -161,6 +174,7 @@ useEffect(() => {
         </button>
       </div>
 
+ {/* Buttons and Navigation links */}
       <nav className="ps-3 bg-sky d-flex gap-2" >
         <Link to="/" className="btn btn-success">
           Habits

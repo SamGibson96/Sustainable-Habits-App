@@ -1,8 +1,11 @@
+// counties.js
+// Array of counties in Ireland
+
 export const counties = [
     "Carlow",
     "Dublin",
     "Kildare",
-    "Kilkenny",
+   "Kilkenny",
     "Laois",
     "Longford",
     "Louth",
