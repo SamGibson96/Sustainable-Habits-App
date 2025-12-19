@@ -2,6 +2,8 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./styles.css";
 
+
+// Image imports
 import Appbackground from "./Images/AppBackground.png";
 import Dirt from "./Images/Dirt.png";
 import Seed from "./Images/Seed.png";
@@ -18,6 +20,7 @@ import Petals from "./Images/Petals.png";
 
 function Flower(props) {
 
+  // Determine flower growth stage based on dailyScorePD
   const stage1 = props.dailyScorePD < 10;
   const stage2 = props.dailyScorePD >= 10 && props.dailyScorePD < 20;
   const StemAppearance = props.dailyScorePD >=20;

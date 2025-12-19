@@ -1,4 +1,3 @@
-import React from "react";
 import Appbackground from "./Images/AppBackground.png";
 
 function Habits(props) {
@@ -20,6 +19,9 @@ function Habits(props) {
         className="scroll-area p-2 mb-2 min-vh-75"
         style={{ height: "450px", overflowY: "auto" }}
       >
+        {/** Map through the susHabitPD array to display each habit */}
+        {/** Each habit has a checkbox that reflects its checked status from checkedTasksPD */}
+        {/** When a checkbox is toggled, it calls the toggleHabitPD function with the habit's ID */}
         {props.susHabitPD.map((a) => (
           <p className="lead fw-bold fs-4 text-center" key={a.ID}>
             <label>

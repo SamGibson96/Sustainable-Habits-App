@@ -5,13 +5,16 @@
 .center-container {
   display: flex;
   justify-content: center; 
+  
 }
+/* Background Colour */
 .bg-sky {
   background-color: #75C6E2;
 }
 .bg-lowsky {
   background-color: #97DCe8;
 }
+ /* Flower Background Styles */
 .flower-bg {
   min-height: 100vh;     
   width: 100%;
@@ -45,6 +48,7 @@
   scrollbar-width: thin;
   scrollbar-color: #0aa2c0 #0dcaf0;
 }
+/* Seed and Sprout Animations */
 @keyframes seed-wiggle {
   10% {
     transform: translateX(-50%) rotateZ(0deg);
@@ -72,25 +76,26 @@
   }
   20% {
     transform: translateX(-50%) rotateZ(-2deg);
-    transform-origin: enter bottom;
+    transform-origin: center bottom;
   }
   40% {
     transform: translateX(-50%) rotateZ(2deg);
-    transform-origin: enter bottom;
+    transform-origin: center bottom;
   }
   60% {
     transform: translateX(-50%) rotateZ(-2deg);
-    transform-origin: enter bottom;
+    transform-origin: center bottom;
   }
   80% {
     transform: translateX(-50%) rotateZ(2deg);
-    transform-origin: enter bottom;
+    transform-origin: center bottom;
   }
   100% {
     transform: translateX(-50%) rotateZ(0deg);
-    transform-origin: enter bottom;
+    transform-origin: center bottom;
   }
 }
+/* Flower Stem and leaves Sway Animations */
  @keyframes sway-left {
   0%   { transform: translateX(-45%) rotate(0deg); }
   25%  { transform: translateX(-45%) rotate(3deg); }

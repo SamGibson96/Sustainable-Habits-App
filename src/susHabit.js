@@ -1,3 +1,6 @@
+// susHabit.js
+// Array of sustainable habits with their IDs, names, scores, and optional weather conditions
+
 const habitData = [
   { ID: 1, Habit: "Walk to Work", Score: 6, WeatherType: "Rain"},
   { ID: 2, Habit: "Plant Based Meal", Score: 8 },

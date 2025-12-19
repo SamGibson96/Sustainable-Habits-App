@@ -1,6 +1,4 @@
-// src/App.js
-
-import React, { useEffect, useState } from "react";
+import { useEffect, useState } from "react";
 import { HashRouter, Routes, Route } from "react-router-dom";
 
 
@@ -14,6 +12,7 @@ function App() {
   const [currentUser, setCurrentUser] = useState(null);
   const [authReady, setAuthReady] = useState(false);
 
+  //auth state listener used to track user login status
   useEffect(() => {
     const unsubscribe = onAuthStateChanged(auth, (user) => {
       setCurrentUser(user);
@@ -23,11 +22,13 @@ function App() {
     return () => unsubscribe();
   }, []);
 
+  
   if (!authReady) {
     return <div style={{ padding: "2rem" }}>Loading...</div>;
   }
 
   return (
+    // Using HashRouter to ensure routing works on a number of different links
     <HashRouter>
       <div>
         {currentUser ? (

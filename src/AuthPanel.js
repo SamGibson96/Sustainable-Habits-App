@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import { useState, useEffect } from "react";
 import { auth, db } from "./firebase";
 import { doc, setDoc } from "firebase/firestore";
 import {
@@ -13,6 +13,7 @@ import "bootstrap/dist/js/bootstrap.bundle.min";
 import "./styles.css";
 import Appbackground from "./Images/AppBackground.png";
 
+// Helper function to get today's date used Canadian format because it is yyyy-mm-dd
   const getTodayKey = () =>
     new Date().toLocaleDateString("en-CA");
 
@@ -36,6 +37,7 @@ function AuthPanel() {
     return () => unsubscribe();
   }, []);
 
+  // Sign up function
   const handleSignup = async () => {
     try {
       setStatus("Signing up...");
@@ -44,6 +46,7 @@ function AuthPanel() {
 
       const user = userCredential.user;
 
+      // Initialize user data in Firestore
       await setDoc(doc(db, "users", user.uid), {
       dailyScore: 0,
       totalScore: 0,
@@ -51,12 +54,14 @@ function AuthPanel() {
       checkedHabits: {}
     });
       
+    
     } catch (error) {
       console.error("Sign up error:", error);
       setStatus("Sign up error: " + error.message);
     }
   };
 
+  // Login function
   const handleLogin = async () => {
     try {
       setStatus("Logging in...");
@@ -68,6 +73,7 @@ function AuthPanel() {
     }
   };
 
+  // Logout function
   const handleLogout = async () => {
     try {
       setStatus("Logging out...");
