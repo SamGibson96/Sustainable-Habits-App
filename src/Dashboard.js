@@ -133,7 +133,7 @@ useEffect(() => {
 
     const fetchWeather = async () => {
       try {
-        const API_KEY = "3f3ae66375bedd29a8d9a4652dd07d32";
+        const API_KEY = process.env.REACT_APP_OPENWEATHER_API_KEY;
 
         const response = await fetch(
           `https://api.openweathermap.org/data/2.5/weather?q=${county}&appid=${API_KEY}&units=metric`
